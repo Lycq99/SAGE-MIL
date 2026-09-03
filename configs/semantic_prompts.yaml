@@ -1,0 +1,7 @@
+concepts:
+  morphology:
+    - "histopathology showing tumor-cell morphology and cellular atypia"
+  texture:
+    - "histopathology showing tissue texture, glandular architecture, stromal pattern, and necrotic texture"
+  microenvironment:
+    - "histopathology showing tumor microenvironment, immune infiltration, stromal reaction, and surrounding tissue context"

@@ -1,0 +1,62 @@
+preprocessing:
+  target_magnification: 20.0
+  patch_size: 256
+  tissue_threshold: 0.1
+  overlap: false
+  stain_normalization: false
+semantic:
+  concepts:
+  - Morphology
+  - Texture
+  - Microenvironment
+  protection_gate:
+  - 1.0
+  - 1.0
+  - 0.0
+  topk_ratio: 0.3
+  proxy_temperature: 0.1
+  heads: 1
+  logit_scale_init: 1.0
+  lambda_env: 0.05
+instance_branch:
+  train_topk_start: 10
+  train_topk_end: 1
+  inference_topk: 6
+  schedule: max(1, floor(10 - 9 * clip(epoch/max_epochs, 0, 1)))
+training_regularization:
+  feature_gaussian_noise_std: 0.005
+ot_feature_replacement:
+  train_key_patches: 5
+  epsilon: 0.05
+  sinkhorn_iterations: 30
+  norm_match: true
+  norm_match_clip:
+  - 0.5
+  - 2.0
+  gamma_margin: 0.25
+  lambda_verify: 0.1
+  warmup_epochs: 20
+regularization:
+  lambda_orth: 0.1
+retrospective_analysis:
+  key_patch_budget: 200
+seeds:
+  split_seed: 2022
+  training_seeds:
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+environment:
+  python: 3.9.23
+  pytorch: 2.5.1
+  cuda: '12.1'
+  gpu: 2 x NVIDIA GeForce RTX 4090
+  nvidia_driver: 535.161.08
+camelyon16_reference:
+  num_prototypes: 100
+  conch_tensor_shape:
+  - 100
+  - 512
+reference_dictionary:
+  num_prototypes: 100

@@ -1,0 +1,70 @@
+cohort: CAMELYON16
+encoder: CONCH
+general:
+  seed: 2022
+  epochs: 25
+  patience: 10
+  precision: 16
+  gradient_accumulation: 2
+  training_seeds:
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  split_seed: 2022
+  output_dir: ./outputs/camelyon16_conch
+task:
+  num_classes: 2
+  class_names:
+  - normal
+  - tumor
+data:
+  manifest: ./data/camelyon16/manifest.csv
+  feature_root: null
+  anchors_path: ./assets/conch_semantic_anchors.pt
+  proxy_path: ./assets/camelyon16_proxy_pool.pt
+  max_patches: -1
+  num_workers: 8
+  proxy_num_prototypes: 100
+  proxy_tensor_shape:
+  - 100
+  - 512
+model:
+  input_dim: 512
+  model_dim: 512
+  topk_ratio: 0.3
+  train_key_patches: 5
+  sinkhorn_epsilon: 0.05
+  sinkhorn_iterations: 30
+  target_norm_matching: true
+  norm_match_clip:
+  - 0.5
+  - 2.0
+  lambda_orth: 0.1
+  lambda_verify: 0.1
+  verify_warmup_epochs: 20
+  gamma_margin: 0.25
+  focal_alpha: 0.25
+  focal_gamma: 1.9
+  eval_bag_weight: 0.5
+  eval_temperature: 1.0
+  semantic_heads: 1
+  proxy_temperature: 0.1
+  semantic_logit_scale_init: 1.0
+  lambda_env: 0.05
+  correction_mask:
+  - 1.0
+  - 1.0
+  - 0.0
+optimizer:
+  lr: 0.0002
+  weight_decay: 1.0e-05
+  lookahead_alpha: 0.5
+  lookahead_k: 6
+implementation:
+  feature_gaussian_noise_std: 0.005
+  instance_topk_train_start: 10
+  instance_topk_train_end: 1
+  instance_topk_inference: 6
+  coordinates_used_by_model_forward: false
+  explicit_padding_mask: false

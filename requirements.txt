@@ -1,0 +1,16 @@
+# Install CUDA-enabled PyTorch 2.5.1 separately.
+pytorch-lightning==1.9.5
+torchmetrics==0.11.4
+omegaconf>=2.3,<2.4
+nystrom-attention>=0.0.12
+numpy>=1.23,<2.0
+pandas>=1.5,<2.2
+scikit-learn>=1.2,<1.5
+scipy>=1.9
+opencv-python>=4.7
+Pillow>=9.4
+openslide-python>=1.2
+PyYAML>=6.0
+transformers>=4.30,<5
+pytest>=7,<9
+matplotlib>=3.7,<4
